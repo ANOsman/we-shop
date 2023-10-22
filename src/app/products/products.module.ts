@@ -6,6 +6,7 @@ import { ProductViewComponent } from './product-view/product-view.component';
 import { SortPipe } from './sort.pipe';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductsRoutingModule } from './products-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,9 @@ import { ProductsRoutingModule } from './products-routing.module';
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [ProductListComponent]
 })

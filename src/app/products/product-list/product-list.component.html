@@ -5,6 +5,7 @@
     <a [routerLink]="['./', product.id]">{{product.name}}</a>
   </li>
 </ul>
+<router-outlet></router-outlet>
 <app-product-detail
   *ngIf="selectedProduct; else noProduct"
   [id]="selectedProduct.id"

@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Product } from '../product';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { ProductsService } from '../products.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/about/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit, OnChanges {
 
+  price: number | undefined
   @Input() id = -1;
   product$: Observable<Product> | undefined;
   @Output() bought = new EventEmitter();
@@ -20,13 +22,12 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   constructor(
     private productsService: ProductsService,
     public authService: AuthService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private cartService: CartService) { }
 
     ngOnInit(): void {
-      this.product$ = this.route.paramMap.pipe(
-        switchMap(params => {
-          return this.productsService.getProduct(Number(params.get('id')))
-        })
+      this.product$ = this.route.data.pipe(
+        switchMap(data => of(data['product']))
       )
     }
 
@@ -34,8 +35,8 @@ export class ProductDetailComponent implements OnInit, OnChanges {
     this.product$ = this.productsService.getProduct(this.id);
   }
 
-  buy() {
-    this.bought.emit();
+  buy(product: Product) {
+    this.cartService.addProduct(product)
   }
 
   changePrice(product: Product, price: number) {
