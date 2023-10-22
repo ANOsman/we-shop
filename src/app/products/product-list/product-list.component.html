@@ -1,0 +1,17 @@
+<h2>Product List</h2>
+<ul>
+  <li
+    *ngFor="let product of products | sort;">
+    <a [routerLink]="['./', product.id]">{{product.name}}</a>
+  </li>
+</ul>
+<app-product-detail
+  *ngIf="selectedProduct; else noProduct"
+  [id]="selectedProduct.id"
+  (bought)="onBuy()"
+  (deleted)="onDelete()">
+</app-product-detail>
+<ng-template #noProduct>
+  <p>No product selected!</p>
+</ng-template>
+<app-product-create (added)="onAdd($event)"></app-product-create>
