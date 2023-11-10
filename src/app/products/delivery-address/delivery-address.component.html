@@ -1,0 +1,61 @@
+<div class="container-fluid mb-5">
+<div class="text-center mb-5">
+    <h2>Delivery address</h2>
+</div>
+<form [formGroup]="addressForm!" (ngSubmit)="processForm()">
+    <div class="row mb-3 ms-5">
+        <label for="firstname" class="col-sm-2 col-form-label">First name</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="firstname" formControlName="firstName">
+        </div>
+    </div>
+    <div class="row mb-3 ms-5">
+        <label for="lastname" class="col-sm-2 col-form-label">Last name</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="lastname" formControlName="lastname">
+        </div>
+    </div>
+    <div class="row mb-3 ms-5">
+      <label for="phone" class="col-sm-2 col-form-label">Cell phone number</label>
+      <div class="col-sm-4">
+        <input type="telephone" class="form-control" id="phone" formControlName="phone">
+      </div>
+  </div>
+    <div class="row mb-3 ms-5">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-4">
+          <input type="email" class="form-control" id="email" formControlName="email">
+        </div>
+    </div>
+    <div class="row mb-3 ms-5">
+        <label for="address" class="col-sm-2 col-form-label" >Address</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="address" placeholder="1234 Main St" formControlName="address">
+        </div>
+    </div>
+    <div class="row mb-3 ms-5">
+        <label for="address2" class="col-sm-2 col-form-label" >Address 2</label>
+        <div class="col-sm-4">
+          <input type="text" class="form-control" id="address2" placeholder="Apartment, studio, or floor" 
+              formControlName="address2" >
+        </div>
+    </div>
+    <div class="row g-3">
+    <div class="col-sm-2 ms-5 mb-3">
+      <input type="text" class="form-control" placeholder="City" aria-label="City" formControlName="city">
+    </div>
+    <div class="col-sm-2 mb-3">
+      <input type="text" class="form-control" placeholder="State" aria-label="State" formControlName="state">
+    </div>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" placeholder="Zip" aria-label="Zip" formControlName="zip">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5"></div>
+    <div class="col-sm-2">
+        <button type="submit" class="btn btn-secondary px-5">Proceed</button>
+    </div>
+</div>
+  </form>
+</div>

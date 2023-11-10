@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <form [formGroup]="paymentForm!" (ngSubmit)="processPayment()">
+      <div class="row mb-3 ms-5">
+        <label for="cardNumber" class="col-sm-2 col-form-label"
+          >Card number:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            id="firstname"
+            formControlName="cardNumber"
+          />
+        </div>
+      </div>
+      <div class="row mb-3 ms-5">
+        <label for="cvv" class="col-sm-2 col-form-label">CVv:</label>
+        <div class="col-sm-4">
+          <input
+            type="text"
+            class="form-control"
+            id="lastname"
+            formControlName="cVv"
+          />
+        </div>
+      </div>
+      <div class="row mb-3 ms-5">
+        <label for="date" class="col-sm-2 col-form-label">Expiration date:</label>
+        <div class="col-sm-4">
+          <input
+            type="date"
+            class="form-control"
+            id="phone"
+            formControlName="expirationDate"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-secondary px-5">Pay Now</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

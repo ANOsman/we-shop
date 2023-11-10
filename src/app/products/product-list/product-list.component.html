@@ -1,18 +1,111 @@
-<h2>Product List</h2>
-<ul>
-  <li
-    *ngFor="let product of products | sort;">
-    <a [routerLink]="['./', product.id]">{{product.name}}</a>
-  </li>
-</ul>
-<router-outlet></router-outlet>
-<app-product-detail
-  *ngIf="selectedProduct; else noProduct"
-  [id]="selectedProduct.id"
-  (bought)="onBuy()"
-  (deleted)="onDelete()">
-</app-product-detail>
-<ng-template #noProduct>
-  <p>No product selected!</p>
-</ng-template>
-<app-product-create (added)="onAdd($event)"></app-product-create>
+<departments></departments>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="row g-0" style="background-color: #f0f0f0">
+        <div class="col-8 p-4 text-center" *ngIf="pageProducts.length === 0">
+          <p class="lead">
+            Sorry! your search did not match any of our products
+          </p>
+        </div>
+        <div
+          class="col-8 col-md-6 col-xl-4"
+          *ngFor="let product of pageProducts"
+        >
+          <div class="card border-0 my-2" style="width: 18rem; height: 30rem">
+            <img
+              src="{{ product.image }}"
+              alt="Photo of a product"
+              style="height: 200px"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <p class="card-text lead text-info">
+                {{ product.price | currency : "EUR" }}
+              </p>
+              <div class="d-grid gap-2">
+                <button
+                  class="btn btn-light"
+                  type="button"
+                  [routerLink]="['/detail', product.id]"
+                  [queryParams]="{ path: 'products' }"
+                >
+                  View details
+                </button>
+                <button
+                  class="btn btn-light"
+                  type="button"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  (click)="buy(product)"
+                >
+                  Add to cart
+                </button>
+              </div>
+            </div>
+          </div>
+        <!-- Modal -->
+        <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Added to Cart
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" routerLink="/cart">
+                Go to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-3 float-start" *ngIf="pageProducts.length !== 0">
+          <ngb-pagination
+            [(page)]="pageNumber"
+            [pageSize]="size"
+            [collectionSize]="products.length"
+            (pageChange)="handlePageChange()"
+          >
+          </ngb-pagination>
+        </div>
+        <div class="col-md-3 float-start pt-2">
+          <select
+            #pageSize
+            (change)="updatePageSize(pageSize.value)"
+            class="p-2"
+          >
+            <option>5</option>
+            <option selected>9</option>
+            <option>15</option>
+            <option>20</option>
+          </select>
+          <span class="ps-2">page Size</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

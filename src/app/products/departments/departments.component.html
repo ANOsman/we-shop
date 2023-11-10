@@ -1,0 +1,7 @@
+
+<div class="bg-light col-md-2 float-md-start">
+  <h2>Shop by Category</h2>
+  <h5 *ngFor="let category of categories"><a [routerLink]="['/department', category]">{{category}}</a></h5>
+  <hr class="d-sm-none" />
+</div>
+<router-outlet></router-outlet>

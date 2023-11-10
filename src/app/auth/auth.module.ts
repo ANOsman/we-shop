@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth/auth.component';
-
+import { MatButtonModule } from '@angular/material/button'
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { AuthComponent } from './auth/auth.component';
     AuthComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule
   ],
   exports: [
     AuthComponent

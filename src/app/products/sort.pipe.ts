@@ -9,9 +9,9 @@ export class SortPipe implements PipeTransform {
   transform(value: Product[]): Product[] {
     if (value) {
       return value.sort((a: Product, b: Product) => {
-        if (a.name < b.name) {
+        if (a.title < b.title) {
           return -1;
-        } else if (b.name < a.name) {
+        } else if (b.title < a.title) {
           return 1;
         }
 

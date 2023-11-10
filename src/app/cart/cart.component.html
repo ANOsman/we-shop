@@ -1,9 +1,76 @@
-<h2>My Cart</h2>
-<div [formGroup]="cartForm">
-  <div
-    formArrayName="products"
-    *ngFor="let product of cartForm.controls.products.controls; let i=index">
-      <label>{{cart[i].name}}</label>
-      <input type="number" [formControlName]="i" />
+<!-- <div class="container-fluid h-100" style="background-color:lightcyan">
+  <div class="row justify-content-center align-items-center">
+  <div class="col-6 text-center">
+  <h2>My Cart</h2>
+  <div *ngIf="cartForm.controls.products.controls.length === 0">
+    <p class="lead">Your cart empty.</p>
+    <a class="btn btn-warning" routerLink="/products">Continue shopping</a>
+  </div>
+</div>
+<div class="row justify-content-center align-items-center">
+  <div [formGroup]="cartForm" class="col-6 mx-5">
+    <div
+      formArrayName="products"
+      *ngFor="let product of cartForm.controls.products.controls; let i = index"
+    >
+      <label>{{ cart[i].title }}:&nbsp;&nbsp;{{cart[i].price | currency: 'EUR'}}</label>
+      <input type="number" [formControlName]="i" min="0"/>
+    </div>
+    <div>
+      <a class="btn btn-warning" routerLink="/products">Continue shopping</a>
+    </div>
+  </div>
+</div>
+</div>
+</div> -->
+<div class="container-fluid">
+  <h1 class="text-info display-1 text-center mb-5">Shopping Cart</h1>
+  <div *ngIf="cart.length === 0" class="row justify-content-center align-items-center">
+    <div class="col-6">
+      
+      <p class="lead">Your cart empty.</p>
+      <a class="btn btn-warning" routerLink="/products">Continue shopping</a>
+    </div>
+  </div>
+  <div class="row justify-content-start mb-3" *ngFor="let product of cart; let i = index">
+    <div class="col-3">
+      <img src="{{ product.image }}" style="width: 250px; height: 200px" />
+    </div>
+    <div class="col-3">{{ product.title }}</div>
+    <div class="col-3">
+      <div class="row">
+        <div class="col fw-bold">
+          {{
+            quantities[cart.indexOf(product)] * product.price | currency : "EUR"
+          }}
+        </div>
+        <div class="col">
+          <span>Quantity:</span>
+          <form>
+            <select
+              class="form-select form-select-md"
+              aria-label=".form-select-sm example"
+              (change)="valueChanged($event)"
+              id="{{i}}"
+            >
+              <option default>{{quantities[cart.indexOf(product)]}}</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option value="10"></option>
+            </select>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="cart.length !== 0" class="text-end me-3">
+    <a class="btn btn-warning" routerLink="/products">Continue shopping</a>
   </div>
 </div>
